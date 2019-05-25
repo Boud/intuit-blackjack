@@ -13,5 +13,7 @@ public enum CardRank {
     TEN,
     JACK,
     QUEEN,
-    KING,
+    KING;
+
+
 }
