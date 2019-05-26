@@ -21,6 +21,9 @@ public class EasyBlackjackAI implements AIStrategy {
             while (bjPlayer.getHandValue() < 21){
                 blackJack.hit(bjPlayer);
             }
+            if(!bjPlayer.isBusted()){
+                blackJack.stand(bjPlayer);
+            }
         }
 
     }

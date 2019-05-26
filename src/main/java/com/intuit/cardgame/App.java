@@ -17,6 +17,6 @@ public class App
         // consoleClient is an observer to the CardGame
         cardGame.addPropertyChangeListener(consoleClient);
 
-        cardGame.play();
+        cardGame.run();
     }
 }

@@ -1,27 +1,19 @@
 package com.intuit.cardgame.blackjack.states;
 
 import com.intuit.cardgame.blackjack.BlackJack;
-import com.intuit.cardgame.blackjack.commands.HitCommand;
-import com.intuit.cardgame.blackjack.commands.StandCommand;
-import com.intuit.cardgame.blackjack.input.ConsoleInputManager;
+import com.intuit.cardgame.common.input.ConsoleInputManager;
 import com.intuit.cardgame.blackjack.players.AIPlayer;
-import com.intuit.cardgame.blackjack.players.BlackJackPlayer;
 import com.intuit.cardgame.blackjack.players.HumanPlayer;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
-import com.intuit.cardgame.common.cards.Card;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class PlayerState implements GameState {
 
     public void handle(CardGame context) {
         int currentIndex = context.getCurrentPlayerIndex();
         Player player = context.getPlayers().get(currentIndex);
-        //We clear console first, in case of multiplayer we don't wanna show other player's hands
-//        System.out.flush();
+        //TODO We clear console first, in case of multiplayer we don't wanna show other player's hands
         System.out.println("It's "+player.getName()+"'s turn !");
         if( player instanceof HumanPlayer){
             handlePlayerTurn((HumanPlayer)player, (BlackJack)context);
@@ -50,7 +42,7 @@ public class PlayerState implements GameState {
         displayTurnInfo(player, blackJack);
         displayTurnChoices();
         ConsoleInputManager consoleInput = ConsoleInputManager.getInstance();
-        int userInput = consoleInput.readPlayerInput();
+        int userInput = consoleInput.getUserInput();
         switch(userInput){
             case 1 : {
                 blackJack.hit(player);
@@ -74,7 +66,6 @@ public class PlayerState implements GameState {
     private void displayTurnInfo(HumanPlayer player, BlackJack blackJack){
         System.out.println(blackJack.getDealer().displayDealerHand(false));
         System.out.println(player.displayHand());
-        System.out.println("Total Hand Value : "+player.getHandValue());
     }
 
     private void displayTurnChoices(){

@@ -9,7 +9,8 @@ public class Dealer extends BlackJackPlayer{
     }
 
     public String displayDealerHand(boolean displayAll){
-        String message = "Dealer's hand : ";
+        String handValue =(displayAll ? String.valueOf(getHandValue()) : "?");
+        String message = "Dealer's hand ("+handValue+"pts) :";
         if(hand != null && !hand.isEmpty()){
             for (int i=0;i<hand.size();i++){
                 message += displayAll || i == 0

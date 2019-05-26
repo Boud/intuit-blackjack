@@ -1,18 +1,14 @@
-package com.intuit.cardgame.blackjack.input;
+package com.intuit.cardgame.common.input;
 
-import com.intuit.cardgame.blackjack.BlackJack;
 import com.intuit.cardgame.blackjack.commands.HitCommand;
 import com.intuit.cardgame.blackjack.commands.StandCommand;
-import com.intuit.cardgame.common.CardGame;
-import com.intuit.cardgame.common.GameContext;
 import com.intuit.cardgame.common.PlayerCommand;
-import com.intuit.cardgame.common.input.InputManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleInputManager {
+public class ConsoleInputManager implements InputManager{
 
     private static ConsoleInputManager instance;
 
@@ -30,7 +26,7 @@ public class ConsoleInputManager {
         return instance;
     }
 
-    public int readPlayerInput(){
+    public int getUserInput(){
         int userInput = -1;
         try {
             String line = console.readLine();
@@ -47,14 +43,5 @@ public class ConsoleInputManager {
 
     private void writeToConsole(String message){
         System.out.println(message);
-    }
-
-    private PlayerCommand handleBlackJack(int userInput){
-        PlayerCommand command = null;
-        switch(userInput){
-            case 1 : command = new HitCommand(); break;
-            case 2 : command = new StandCommand(); break;
-        }
-        return command;
     }
 }

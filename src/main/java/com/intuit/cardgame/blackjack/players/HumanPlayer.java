@@ -10,7 +10,7 @@ public class HumanPlayer extends BlackJackPlayer {
     }
 
     public String displayHand(){
-        String message = "Your Hand : ";
+        String message = "Your Hand ("+getHandValue()+"pts) :";
         for(Card card : getHand()) {
             message+=" ["+(card.toString())+"]";
         }

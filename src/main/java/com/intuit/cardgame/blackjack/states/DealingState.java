@@ -21,6 +21,7 @@ public class DealingState implements GameState {
         for (Player player:blackJack.getPlayers()) {
             player.addCard( deck.getNextCard(),false);
             player.addCard( deck.getNextCard(),false);
+            //If player has a "natural" blackjack go directly to End State and declare him as winner
         }
         // Add two cards to dealer (one face up/ one face down)
         blackJack.getDealer().getHand().add( deck.getNextCard());

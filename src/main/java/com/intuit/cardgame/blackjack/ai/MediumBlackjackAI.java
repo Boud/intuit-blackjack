@@ -18,6 +18,9 @@ public class MediumBlackjackAI implements AIStrategy {
             while (bjPlayer.getHandValue() < 17){
                 blackJack.hit(bjPlayer);
             }
+            if(!bjPlayer.isBusted()){
+                blackJack.stand(bjPlayer);
+            }
         }
 
     }
