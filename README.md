@@ -6,7 +6,10 @@ Black Jack by Mourad NAJAR
 Simple Blackjack with no bets.
 
 You can play with human or AI opponents against the Dealer/ bank.
+
 No handling of split, only possible choices are hit or stand.
+
+At the end of the game, each player's hand is only compared to the dealer and not against each others (multiple winners possible)
 
 **Instructions**
 

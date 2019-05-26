@@ -1,6 +1,7 @@
 package com.intuit.cardgame.blackjack;
 
 import com.intuit.cardgame.blackjack.ai.EasyBlackjackAI;
+import com.intuit.cardgame.blackjack.ai.HardBlackjackAI;
 import com.intuit.cardgame.blackjack.ai.MediumBlackjackAI;
 import com.intuit.cardgame.blackjack.players.AIPlayer;
 import com.intuit.cardgame.blackjack.players.BlackJackPlayer;
@@ -20,7 +21,7 @@ import java.util.List;
 public class BlackJack extends CardGame {
 
     private boolean vsAI = true;
-    private AIStrategy defaultAI = new EasyBlackjackAI();
+    private AIStrategy AILevel = new EasyBlackjackAI();
 
 
     private Dealer dealer;
@@ -34,10 +35,12 @@ public class BlackJack extends CardGame {
     protected void initGame() {
         //init Dealer
         dealer = new Dealer("Dealer");
-
-        //For now add one human player and one AI
-        players.add(new HumanPlayer("Boud"));
-        players.add(new AIPlayer("MisterMV", new MediumBlackjackAI()));
+        players.add(new HumanPlayer("Player 1"));
+        if(vsAI){
+            players.add(new AIPlayer("Asimov", new MediumBlackjackAI()));
+        } else {
+            players.add(new HumanPlayer("Player 2"));
+        }
         // Start with initial Dealing State
         setCurrentState(new DealingState());
         playing = true;
@@ -57,6 +60,21 @@ public class BlackJack extends CardGame {
 
     @Override
     public void setup() {
+        System.out.println("Do you want to play against a Human or an AI ?");
+        System.out.println("1- HUMAN  2- AI");
+        int choice = inputManager.getUserInput();
+        vsAI =(choice == 1 ? false : true);
+        if(vsAI){
+            System.out.println("What level of AI do you want ?");
+            System.out.println("1- EASY  2- MEDIUM  3-HARD");
+            choice = inputManager.getUserInput();
+            switch(choice){
+                case 1: AILevel = new EasyBlackjackAI();break;
+                default:
+                case 2: AILevel = new MediumBlackjackAI();break;
+                case 3: AILevel = new HardBlackjackAI();break;
+            }
+        }
     }
 
     public void stand(BlackJackPlayer player) {
