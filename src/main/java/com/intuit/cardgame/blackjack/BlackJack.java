@@ -47,6 +47,7 @@ public class BlackJack extends CardGame {
     protected void reset() {
         players = new ArrayList<Player>();
         dealer = new Dealer("Dealer");
+        currentPlayerIndex = 0;
     }
 
     @Override

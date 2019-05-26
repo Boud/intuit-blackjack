@@ -8,4 +8,6 @@ public interface InputManager {
     //PlayerCommand getUserInput();
     int getUserInput();
 
+    void waitConfirm();
+
 }

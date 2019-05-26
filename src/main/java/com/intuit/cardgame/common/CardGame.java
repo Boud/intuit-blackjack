@@ -39,7 +39,6 @@ public abstract class CardGame {
     }
 
     public void play(){
-        System.out.println("\n\n\n");
         initGame();
         while(playing){
             if(currentState != null){
@@ -155,5 +154,9 @@ public abstract class CardGame {
 
     public void removePropertyChangeListener(PropertyChangeListener pcl) {
         support.removePropertyChangeListener(pcl);
+    }
+
+    public void waitConfirm(){
+        inputManager.waitConfirm();
     }
 }

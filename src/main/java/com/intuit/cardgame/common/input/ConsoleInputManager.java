@@ -41,6 +41,15 @@ public class ConsoleInputManager implements InputManager{
         return userInput;
     }
 
+    public void waitConfirm() {
+        try {
+            String line = console.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Unable to determine user action from input stream");
+        }
+    }
+
     private void writeToConsole(String message){
         System.out.println(message);
     }

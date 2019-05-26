@@ -35,26 +35,29 @@ public class PlayerState implements GameState {
 
     private void handlePlayerTurn(HumanPlayer player, BlackJack blackJack){
 
-        if(player.isBusted() || player.isEndedTurn()){
-            return;
-        }
-        //Display turn info to player so he can make (hopefully) a good choice
-        displayTurnInfo(player, blackJack);
-        displayTurnChoices();
-        ConsoleInputManager consoleInput = ConsoleInputManager.getInstance();
-        int userInput = consoleInput.getUserInput();
-        switch(userInput){
-            case 1 : {
-                blackJack.hit(player);
-                handlePlayerTurn(player,blackJack);
-                break;
+        while(!player.isBusted() && !player.isEndedTurn()){
+            //If player has blackJack automatically end turn (no need to ask for input)
+            if(player.hasBlackJack()){
+                System.out.println("You have a BLACKJACK !");
+                player.setEndedTurn(true);
+                return;
             }
-            case 2 : {
-                blackJack.stand(player);
-                break;
+            //Display turn info to player so he can make (hopefully) a good choice
+            displayTurnInfo(player, blackJack);
+            displayTurnChoices();
+            ConsoleInputManager consoleInput = ConsoleInputManager.getInstance();
+            int userInput = consoleInput.getUserInput();
+            switch(userInput){
+                case 1 : {
+                    blackJack.hit(player);
+                    break;
+                }
+                case 2 : {
+                    blackJack.stand(player);
+                    break;
+                }
             }
         }
-
     }
 
     private void handleAITurn(AIPlayer aiPlayer, CardGame context){

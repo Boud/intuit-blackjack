@@ -57,4 +57,15 @@ public class HumanPlayerTest {
         assertEquals(20,player.getHandValue());
     }
 
+    @Test
+    public void hasBlackJack(){
+        List hand = player.getHand();
+        hand.add(new Card(CardRank.KING, CardSuit.HEARTS));
+        hand.add(new Card(CardRank.ACE, CardSuit.HEARTS));
+        assertTrue(player.hasBlackJack());
+        hand.add(new Card(CardRank.JACK, CardSuit.HEARTS));
+        hand.add(new Card(CardRank.QUEEN, CardSuit.HEARTS));
+        assertFalse(player.hasBlackJack());
+    }
+
 }
