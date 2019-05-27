@@ -26,9 +26,6 @@ public class App implements CommandLineRunner {
         private BlackJackConsole blackJackConsole;
 
         public static void main(String[] args) {
-            /*SpringApplication app = new SpringApplication(App.class);
-            app.setBannerMode(Banner.Mode.OFF);
-            app.run(args);*/
             SpringApplication.run(App.class, args);
         }
 
