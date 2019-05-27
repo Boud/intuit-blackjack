@@ -1,8 +1,7 @@
 package com.intuit.cardgame;
 
 import com.intuit.cardgame.blackjack.BlackJack;
-import com.intuit.cardgame.common.BlackJackConsole;
-import com.intuit.cardgame.common.CardGame;
+import com.intuit.cardgame.blackjack.BlackJackConsole;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package com.intuit.cardgame.common;
+package com.intuit.cardgame.blackjack;
 
 import com.intuit.cardgame.blackjack.BlackJack;
 import com.intuit.cardgame.blackjack.ai.EasyBlackjackAI;
@@ -9,6 +9,10 @@ import com.intuit.cardgame.blackjack.states.DealerState;
 import com.intuit.cardgame.blackjack.states.DealingState;
 import com.intuit.cardgame.blackjack.states.EndState;
 import com.intuit.cardgame.blackjack.states.PlayerState;
+import com.intuit.cardgame.common.AILevel;
+import com.intuit.cardgame.common.CardGame;
+import com.intuit.cardgame.common.GameState;
+import com.intuit.cardgame.common.Player;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
