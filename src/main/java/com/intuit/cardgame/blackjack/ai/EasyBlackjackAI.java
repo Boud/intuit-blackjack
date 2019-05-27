@@ -5,9 +5,6 @@ import com.intuit.cardgame.blackjack.players.BlackJackPlayer;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
-import com.intuit.cardgame.common.cards.Card;
-
-import java.util.List;
 
 public class EasyBlackjackAI implements AIStrategy {
 

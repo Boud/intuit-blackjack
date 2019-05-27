@@ -4,7 +4,6 @@ import com.intuit.cardgame.blackjack.BlackJack;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
-import com.intuit.cardgame.common.cards.Card;
 import com.intuit.cardgame.common.cards.Deck;
 
 public class DealingState implements GameState {

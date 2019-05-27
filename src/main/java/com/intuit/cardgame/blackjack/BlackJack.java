@@ -3,8 +3,6 @@ package com.intuit.cardgame.blackjack;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intuit.cardgame.App;
 import com.intuit.cardgame.blackjack.ai.EasyBlackjackAI;
 import com.intuit.cardgame.blackjack.ai.HardBlackjackAI;
 import com.intuit.cardgame.blackjack.ai.MediumBlackjackAI;
@@ -16,7 +14,6 @@ import com.intuit.cardgame.blackjack.states.DealingState;
 import com.intuit.cardgame.common.AILevel;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.Player;
-import com.intuit.cardgame.common.ai.AIStrategy;
 import com.intuit.cardgame.common.cards.Card;
 import com.intuit.cardgame.common.cards.Deck;
 import org.slf4j.Logger;
@@ -27,8 +24,6 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component

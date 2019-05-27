@@ -8,9 +8,7 @@ import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class PlayerState implements GameState {

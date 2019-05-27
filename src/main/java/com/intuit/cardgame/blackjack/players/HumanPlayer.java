@@ -1,6 +1,5 @@
 package com.intuit.cardgame.blackjack.players;
 
-import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.cards.Card;
 
 public class HumanPlayer extends BlackJackPlayer {

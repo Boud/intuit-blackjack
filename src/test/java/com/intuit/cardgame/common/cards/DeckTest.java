@@ -5,9 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.PrintStream;
-import java.util.Arrays;
-
 public class DeckTest {
 
     private Deck deck;

@@ -1,8 +1,6 @@
 package com.intuit.cardgame.blackjack.players;
 
-import com.intuit.cardgame.blackjack.ai.EasyBlackjackAI;
 import com.intuit.cardgame.common.CardGame;
-import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
 
 public class AIPlayer extends BlackJackPlayer {

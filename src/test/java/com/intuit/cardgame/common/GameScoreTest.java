@@ -1,7 +1,5 @@
 package com.intuit.cardgame.common;
 
-import com.intuit.cardgame.blackjack.BlackJack;
-import com.intuit.cardgame.blackjack.players.AIPlayer;
 import com.intuit.cardgame.blackjack.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;

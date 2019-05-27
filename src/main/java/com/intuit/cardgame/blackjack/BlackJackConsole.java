@@ -1,8 +1,7 @@
 package com.intuit.cardgame.blackjack;
 
+import com.intuit.cardgame.App;
 import com.intuit.cardgame.blackjack.BlackJack;
-import com.intuit.cardgame.blackjack.ai.EasyBlackjackAI;
-import com.intuit.cardgame.blackjack.ai.MediumBlackjackAI;
 import com.intuit.cardgame.blackjack.players.AIPlayer;
 import com.intuit.cardgame.blackjack.players.HumanPlayer;
 import com.intuit.cardgame.blackjack.states.DealerState;
@@ -13,6 +12,8 @@ import com.intuit.cardgame.common.AILevel;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,8 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class BlackJackConsole implements PropertyChangeListener {
+
+    private static Logger LOG = LoggerFactory.getLogger(BlackJackConsole.class);
 
     private BufferedReader console;
     private BlackJack blackJack;
@@ -85,7 +88,7 @@ public class BlackJackConsole implements PropertyChangeListener {
         System.out.println("Do you want to play against a Human or an AI ?");
         System.out.println("1- HUMAN  2- AI");
         int choice = getPlayerInput();
-        boolean vsAI =(choice == 1 ? false : true);
+        boolean vsAI =(choice != 1);
         AILevel aiLevel = AILevel.MEDIUM;
         if(vsAI){
             System.out.println("What level of AI do you want ?");
@@ -136,9 +139,9 @@ public class BlackJackConsole implements PropertyChangeListener {
 
     protected void wait(int milliseconds){
         try {
-            TimeUnit.MILLISECONDS.sleep(1000);
+            TimeUnit.MILLISECONDS.sleep(milliseconds);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOG.error("Could not interrupt",e);
         }
     }
 

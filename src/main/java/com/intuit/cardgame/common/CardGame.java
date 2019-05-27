@@ -2,16 +2,12 @@ package com.intuit.cardgame.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intuit.cardgame.common.ai.AIStrategy;
-import com.intuit.cardgame.common.cards.Card;
 import com.intuit.cardgame.common.cards.Deck;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for all cardGames
@@ -20,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class CardGame {
 
-    protected PropertyChangeSupport support= new PropertyChangeSupport(this);;
+    protected PropertyChangeSupport support= new PropertyChangeSupport(this);
     protected Deck deck;
     protected List<Player> players = new ArrayList<Player>();
     protected GameState currentState;
