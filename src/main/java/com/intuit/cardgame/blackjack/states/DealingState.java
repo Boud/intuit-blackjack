@@ -11,7 +11,6 @@ public class DealingState implements GameState {
 
     public void handle(CardGame context) {
         BlackJack blackJack = (BlackJack) context;
-        System.out.println("Dealing cards ...");
         Deck deck = new Deck();
         deck.generateDeck();
         deck.shuffle();

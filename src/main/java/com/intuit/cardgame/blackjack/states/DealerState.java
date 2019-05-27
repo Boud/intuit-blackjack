@@ -7,11 +7,9 @@ import com.intuit.cardgame.common.GameState;
 public class DealerState implements GameState {
 
     public void handle(CardGame context) {
-        System.out.println("Time for the dealer's turn !");
         BlackJack blackJack = (BlackJack) context;
-        System.out.println(blackJack.getDealer().displayDealerHand(true));
+        blackJack.sendMessage(blackJack.getDealer().displayDealerHand(true));
         blackJack.getDealer().playTurn(blackJack);
-        System.out.println(blackJack.getDealer().displayDealerHand(true));
-        context.setCurrentState(new EndState());
+        context.setCurrentState(new OutcomeState());
     }
 }

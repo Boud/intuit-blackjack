@@ -33,6 +33,6 @@ java -jar target\blackjack-1.0-SNAPSHOT.jar
 - ~~Be extensible so that other card games could be implemented in the future,
 potentially dozens of different games~~
 - Track each player/computer action within the system
-- Capable of supporting interaction patterns other than a command-line interface
+- ~~Capable of supporting interaction patterns other than a command-line interface~~
 - ~~When playing against the computer a difficulty setting of easy/medium/hard can
 be selected~~

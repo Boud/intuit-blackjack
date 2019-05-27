@@ -8,27 +8,22 @@ import com.intuit.cardgame.blackjack.players.BlackJackPlayer;
 import com.intuit.cardgame.blackjack.players.Dealer;
 import com.intuit.cardgame.blackjack.players.HumanPlayer;
 import com.intuit.cardgame.blackjack.states.DealingState;
+import com.intuit.cardgame.common.AILevel;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
 import com.intuit.cardgame.common.cards.Card;
 import com.intuit.cardgame.common.cards.Deck;
-import com.intuit.cardgame.common.input.ConsoleInputManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BlackJack extends CardGame {
 
-    private boolean vsAI = true;
-    private AIStrategy AILevel = new EasyBlackjackAI();
-
-
     private Dealer dealer;
 
     public BlackJack() {
-        // This should definitively be done through Spring's IOC / DI
-        inputManager = ConsoleInputManager.getInstance();
+        AILevel = new EasyBlackjackAI();
     }
 
     @Override
@@ -59,26 +54,18 @@ public class BlackJack extends CardGame {
     }
 
     @Override
-    public void setup() {
-        System.out.println("Do you want to play against a Human or an AI ?");
-        System.out.println("1- HUMAN  2- AI");
-        int choice = inputManager.getUserInput();
-        vsAI =(choice == 1 ? false : true);
-        if(vsAI){
-            System.out.println("What level of AI do you want ?");
-            System.out.println("1- EASY  2- MEDIUM  3-HARD");
-            choice = inputManager.getUserInput();
-            switch(choice){
-                case 1: AILevel = new EasyBlackjackAI();break;
-                default:
-                case 2: AILevel = new MediumBlackjackAI();break;
-                case 3: AILevel = new HardBlackjackAI();break;
-            }
+    public void setup(boolean vsAI, AILevel aiLevel) {
+        this.vsAI = vsAI;
+        switch(aiLevel){
+            case EASY: AILevel = new EasyBlackjackAI();break;
+            default:
+            case MEDIUM: AILevel = new MediumBlackjackAI();break;
+            case HARD: AILevel = new HardBlackjackAI();break;
         }
     }
 
     public void stand(BlackJackPlayer player) {
-        System.out.println("Player " + player.getName() + " stands...");
+        sendMessage("Player " + player.getName() + " stands...");
         player.setEndedTurn(true);
     }
 
@@ -88,12 +75,12 @@ public class BlackJack extends CardGame {
         if (card != null) {
             player.getHand().add(card);
             if (player instanceof HumanPlayer || player instanceof Dealer) {
-                System.out.println("Player " + player.getName() + " drew [" + card.toString() + "]");
+                sendMessage("Player " + player.getName() + " drew [" + card.toString() + "]");
             } else {
-                System.out.println("Player " + player.getName() + " hits...");
+                sendMessage("Player " + player.getName() + " hits...");
             }
             if (player.getHandValue() > 21) {
-                System.out.println("Ouch Player " + player.getName() + " is busted !");
+                sendMessage("Ouch Player " + player.getName() + " is busted !");
                 player.setBusted(true);
             }
 
@@ -105,4 +92,7 @@ public class BlackJack extends CardGame {
         return dealer;
     }
 
+    public Player getCurrentPlayer(){
+        return players.get(currentPlayerIndex);
+    }
 }

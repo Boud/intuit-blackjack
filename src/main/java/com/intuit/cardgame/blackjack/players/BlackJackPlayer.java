@@ -43,6 +43,7 @@ public abstract class BlackJackPlayer extends Player {
         return handValue;
     }
 
+
     public boolean hasBlackJack(){
         return (getHandValue()== 21);
     }

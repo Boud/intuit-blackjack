@@ -1,7 +1,7 @@
 package com.intuit.cardgame;
 
 import com.intuit.cardgame.blackjack.BlackJack;
-import com.intuit.cardgame.common.ConsoleClient;
+import com.intuit.cardgame.common.BlackJackConsole;
 import com.intuit.cardgame.common.CardGame;
 
 /**
@@ -12,11 +12,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        ConsoleClient consoleClient = new ConsoleClient();
-        CardGame cardGame = new BlackJack();
-        // consoleClient is an observer to the CardGame
-        cardGame.addPropertyChangeListener(consoleClient);
-
-        cardGame.run();
+        BlackJack blackJack = new BlackJack();
+        BlackJackConsole blackJackConsole = new BlackJackConsole(blackJack);
+        // blackJackConsole is an observer to the CardGame
+        blackJack.addPropertyChangeListener(blackJackConsole);
+        blackJackConsole.run();
     }
 }

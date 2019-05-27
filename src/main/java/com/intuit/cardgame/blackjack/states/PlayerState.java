@@ -1,20 +1,25 @@
 package com.intuit.cardgame.blackjack.states;
 
 import com.intuit.cardgame.blackjack.BlackJack;
-import com.intuit.cardgame.common.input.ConsoleInputManager;
+import com.intuit.cardgame.common.PlayerCommand;
 import com.intuit.cardgame.blackjack.players.AIPlayer;
 import com.intuit.cardgame.blackjack.players.HumanPlayer;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class PlayerState implements GameState {
+
+    private Queue<PlayerCommand> playerCommands = new LinkedList<PlayerCommand>();
 
     public void handle(CardGame context) {
         int currentIndex = context.getCurrentPlayerIndex();
         Player player = context.getPlayers().get(currentIndex);
-        //TODO We clear console first, in case of multiplayer we don't wanna show other player's hands
-        System.out.println("It's "+player.getName()+"'s turn !");
         if( player instanceof HumanPlayer){
             handlePlayerTurn((HumanPlayer)player, (BlackJack)context);
         } else if ( player instanceof AIPlayer){
@@ -34,46 +39,19 @@ public class PlayerState implements GameState {
     }
 
     private void handlePlayerTurn(HumanPlayer player, BlackJack blackJack){
-
+        //TODO use commands
         while(!player.isBusted() && !player.isEndedTurn()){
-            //If player has blackJack automatically end turn (no need to ask for input)
-            if(player.hasBlackJack()){
-                System.out.println("You have a BLACKJACK !");
-                player.setEndedTurn(true);
-                return;
-            }
-            //Display turn info to player so he can make (hopefully) a good choice
-            displayTurnInfo(player, blackJack);
-            displayTurnChoices();
-            ConsoleInputManager consoleInput = ConsoleInputManager.getInstance();
-            int userInput = consoleInput.getUserInput();
-            switch(userInput){
-                case 1 : {
-                    blackJack.hit(player);
-                    break;
-                }
-                case 2 : {
-                    blackJack.stand(player);
-                    break;
-                }
+            PlayerCommand command = playerCommands.poll();
+            if(command != null){
+                command.execute(player, blackJack);
             }
         }
+
     }
 
     private void handleAITurn(AIPlayer aiPlayer, CardGame context){
-        System.out.println(aiPlayer.getName()+" is thinking...");
+        //context.sendMessage(aiPlayer.getName()+" is thinking...");
         aiPlayer.playTurn(context);
     }
-
-    //To Remove since UI info must be decoupled
-    private void displayTurnInfo(HumanPlayer player, BlackJack blackJack){
-        System.out.println(blackJack.getDealer().displayDealerHand(false));
-        System.out.println(player.displayHand());
-    }
-
-    private void displayTurnChoices(){
-        System.out.println("\n1- HIT  2- STAND");
-    }
-
 
 }

@@ -17,7 +17,4 @@ public class AIPlayer extends BlackJackPlayer {
     public void playTurn(CardGame context){
         aiStrategy.playTurn(this,context );
     }
-
-
-
 }

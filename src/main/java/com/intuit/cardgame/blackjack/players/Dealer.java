@@ -28,6 +28,9 @@ public class Dealer extends BlackJackPlayer{
             while (getHandValue() < 17){
                 context.hit(this);
             }
+            if(!isBusted()){
+                context.stand(this);
+            }
         }
     }
 
