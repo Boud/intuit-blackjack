@@ -89,8 +89,8 @@ public class BlackJack extends CardGame {
             String message ="Current Scores : ";
             for(Map.Entry<String, Integer> entry : gameScore.getScores().entrySet()) {
                 message+= "\n"+entry.getKey()+" : "+ entry.getValue();
-                sendMessage(message);
             }
+            sendMessage(message);
         }
     }
 
