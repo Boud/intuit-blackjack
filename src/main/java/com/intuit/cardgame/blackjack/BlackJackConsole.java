@@ -13,6 +13,8 @@ import com.intuit.cardgame.common.AILevel;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -21,12 +23,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class BlackJackConsole implements PropertyChangeListener {
 
     private BufferedReader console;
     private BlackJack blackJack;
     protected int quitMenuChoice = 4;
 
+    @Autowired
     public BlackJackConsole(BlackJack blackJack){
         console = new BufferedReader(new InputStreamReader(System.in));
         this.blackJack = blackJack;
@@ -99,7 +103,7 @@ public class BlackJackConsole implements PropertyChangeListener {
     }
 
     private void stats(){
-
+        blackJack.stats();
     }
 
     private int getPlayerInput(){

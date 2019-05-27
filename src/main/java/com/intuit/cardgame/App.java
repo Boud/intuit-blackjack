@@ -2,19 +2,40 @@ package com.intuit.cardgame;
 
 import com.intuit.cardgame.blackjack.BlackJack;
 import com.intuit.cardgame.blackjack.BlackJackConsole;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Hello world!
- *
+ * Main Class
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        BlackJack blackJack = new BlackJack();
-        BlackJackConsole blackJackConsole = new BlackJackConsole(blackJack);
-        // blackJackConsole is an observer to the CardGame
-        blackJack.addPropertyChangeListener(blackJackConsole);
-        blackJackConsole.run();
-    }
+@SpringBootApplication
+public class App implements CommandLineRunner {
+
+        private static Logger LOG = LoggerFactory
+                .getLogger(App.class);
+
+        @Autowired
+        private BlackJack blackJack;
+
+        @Autowired
+        private BlackJackConsole blackJackConsole;
+
+        public static void main(String[] args) {
+            /*SpringApplication app = new SpringApplication(App.class);
+            app.setBannerMode(Banner.Mode.OFF);
+            app.run(args);*/
+            SpringApplication.run(App.class, args);
+        }
+
+        @Override
+        public void run(String... args) throws Exception {
+            // blackJackConsole is an observer to the CardGame
+            blackJack.addPropertyChangeListener(blackJackConsole);
+            blackJackConsole.run();
+        }
 }

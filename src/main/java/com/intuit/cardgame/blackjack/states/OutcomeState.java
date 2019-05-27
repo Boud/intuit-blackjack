@@ -30,10 +30,12 @@ public class OutcomeState implements GameState {
                 // Dealer is busted automatic win !
                 if (dealer.isBusted()) {
                     displayWinStatus(blackJack, bjPlayer, "WINS !");
+                    blackJack.getGameScore().addWin(bjPlayer);
                 } else if (bjPlayer.getHandValue() == dealer.getHandValue()) {
                     displayWinStatus(blackJack, bjPlayer, "TIE");
                 } else if (bjPlayer.getHandValue() > dealer.getHandValue()) {
                     displayWinStatus(blackJack, bjPlayer, "WINS !");
+                    blackJack.getGameScore().addWin(bjPlayer);
                 } else {
                     displayWinStatus(blackJack, bjPlayer, "LOSES...");
                 }

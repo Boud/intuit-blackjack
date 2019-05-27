@@ -1,5 +1,6 @@
 package com.intuit.cardgame.common;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intuit.cardgame.common.ai.AIStrategy;
 import com.intuit.cardgame.common.cards.Card;
 import com.intuit.cardgame.common.cards.Deck;
@@ -27,6 +28,8 @@ public abstract class CardGame {
     protected boolean playing;
     protected boolean vsAI = true;
     protected AIStrategy AILevel;
+    protected GameScore gameScore = new GameScore();
+    protected ObjectMapper objectMapper = new ObjectMapper();
 
     public void play(){
         initGame();
@@ -36,6 +39,7 @@ public abstract class CardGame {
                 currentState.handle(this);
             }
         }
+        saveStats();
         reset();
     }
 
@@ -47,16 +51,16 @@ public abstract class CardGame {
         support.firePropertyChange("message",null,message);
     }
 
+    // Abstract methods
     public abstract void setup(boolean vsAI, AILevel aiLevel);
-
-
-    //Abstract Methods
 
     protected abstract void initGame();
 
     protected abstract void reset();
 
     protected abstract void stats();
+
+    protected abstract void saveStats();
 
 
     // Getters + Setters
@@ -97,9 +101,13 @@ public abstract class CardGame {
         this.playing = playing;
     }
 
-//    public List<Card> getDealerHand() {
-//        return dealerHand;
-//    }
+    public GameScore getGameScore() {
+        return gameScore;
+    }
+
+    public void setGameScore(GameScore gameScore) {
+        this.gameScore = gameScore;
+    }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);

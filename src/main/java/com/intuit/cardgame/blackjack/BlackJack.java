@@ -1,5 +1,10 @@
 package com.intuit.cardgame.blackjack;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intuit.cardgame.App;
 import com.intuit.cardgame.blackjack.ai.EasyBlackjackAI;
 import com.intuit.cardgame.blackjack.ai.HardBlackjackAI;
 import com.intuit.cardgame.blackjack.ai.MediumBlackjackAI;
@@ -14,16 +19,51 @@ import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
 import com.intuit.cardgame.common.cards.Card;
 import com.intuit.cardgame.common.cards.Deck;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Component
 public class BlackJack extends CardGame {
 
+    private static Logger LOG = LoggerFactory
+            .getLogger(BlackJack.class);
+
     private Dealer dealer;
+    private static String SCORE_FILE_PATH ="blackjack-scores.json";
 
     public BlackJack() {
         AILevel = new EasyBlackjackAI();
+    }
+
+
+    @PostConstruct
+    public void init(){
+        // Load Game stats from json file if present
+        File scoresFile = new File(SCORE_FILE_PATH);
+        if(scoresFile.exists()){
+            try {
+                Map<String, Integer> scores = objectMapper.readValue(scoresFile,
+                        new TypeReference<Map<String, Integer>>() {});
+                gameScore.setScores(scores);
+
+            } catch (JsonParseException e) {
+                LOG.error("Error while parsing JSON file", e);
+            } catch (JsonMappingException e) {
+                LOG.error("Error while mapping JSON file", e);
+            } catch (IOException e) {
+                LOG.error("I/O Error with JSON file", e);
+            }
+        }
+
     }
 
     @Override
@@ -50,7 +90,13 @@ public class BlackJack extends CardGame {
 
     @Override
     public void stats() {
-
+        if(gameScore != null && gameScore.getScores()!=null){
+            String message ="Current Scores : ";
+            for(Map.Entry<String, Integer> entry : gameScore.getScores().entrySet()) {
+                message+= "\n"+entry.getKey()+" : "+ entry.getValue();
+                sendMessage(message);
+            }
+        }
     }
 
     @Override
@@ -61,6 +107,17 @@ public class BlackJack extends CardGame {
             default:
             case MEDIUM: AILevel = new MediumBlackjackAI();break;
             case HARD: AILevel = new HardBlackjackAI();break;
+        }
+    }
+
+    @Override
+    public void saveStats(){
+        try {
+            objectMapper.writeValue(new File(SCORE_FILE_PATH), gameScore.getScores());
+            String jsonResult = objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString( gameScore.getScores());
+        } catch (IOException e) {
+            LOG.error("I/O Error with JSON file", e);
         }
     }
 
