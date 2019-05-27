@@ -28,7 +28,7 @@ java -jar target\blackjack-1.0-SNAPSHOT.jar
 **Completion**
 
 - ~~Implement a card game~~
-- Maintain a scoring system that persists over multiple game sessions
+- ~~Maintain a scoring system that persists over multiple game sessions~~
 - ~~Ability to play against the computer, or against other players~~
 - ~~Be extensible so that other card games could be implemented in the future,
 potentially dozens of different games~~
