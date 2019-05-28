@@ -24,19 +24,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ * Console Client for {@link BlackJack}
+ *
+ * @author mnajar
+ */
 @Component
 public class BlackJackConsole implements PropertyChangeListener {
 
     private static Logger LOG = LoggerFactory.getLogger(BlackJackConsole.class);
 
     private BufferedReader console;
-    private BlackJack blackJack;
-    protected int quitMenuChoice = 4;
 
     @Autowired
-    public BlackJackConsole(BlackJack blackJack){
+    private BlackJack blackJack;
+
+    protected int quitMenuChoice = 4;
+
+
+    public BlackJackConsole(){
         console = new BufferedReader(new InputStreamReader(System.in));
-        this.blackJack = blackJack;
     }
 
     public void run(){

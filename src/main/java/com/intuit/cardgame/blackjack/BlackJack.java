@@ -21,11 +21,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+
+/**<p>
+ * BlackJack GUI Agnostic implementation.
+ * <br>
+ * Need add to GUI Clients using {@link BlackJack#addPropertyChangeListener(PropertyChangeListener)}
+ * </p>
+ *
+ * @author mnajar
+ */
 @Component
 public class BlackJack extends CardGame {
 
