@@ -12,6 +12,7 @@ import com.intuit.cardgame.common.AILevel;
 import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.GameState;
 import com.intuit.cardgame.common.Player;
+import com.intuit.cardgame.util.ASCIIArt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,9 @@ public class BlackJackConsole implements PropertyChangeListener {
     @Autowired
     private BlackJack blackJack;
 
+    @Autowired
+    private ASCIIArt asciiArt;
+
     protected int quitMenuChoice = 4;
 
 
@@ -49,6 +53,9 @@ public class BlackJackConsole implements PropertyChangeListener {
 
     public void run(){
         int userChoice = 0;
+        // Draw the blackjack LOGO !
+        asciiArt.drawString("BLACKJACK");
+
         while(userChoice != quitMenuChoice){
             showMenu();
         }
@@ -137,6 +144,7 @@ public class BlackJackConsole implements PropertyChangeListener {
     }
 
     private void waitConfirm() {
+        System.out.println("Press ENTER to continue");
         try {
             String line = console.readLine();
         } catch (IOException e) {
