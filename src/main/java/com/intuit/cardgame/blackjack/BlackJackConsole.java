@@ -54,6 +54,7 @@ public class BlackJackConsole implements PropertyChangeListener {
     public void run(){
         int userChoice = 0;
         // Draw the blackjack LOGO !
+        System.out.println("");
         asciiArt.drawString("BLACKJACK");
 
         while(userChoice != quitMenuChoice){

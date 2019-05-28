@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class ASCIIArt {
 
     public void drawString(String text){
-        Settings settings = new Settings(new Font("SansSerif", Font.BOLD, 12), text.length() * 30, 30); // 30 pixel width per character
+        Settings settings = new Settings(new Font("SansSerif", Font.BOLD, 12), text.length() * 15, 15); // 30 pixel width per character
         drawString(text, "*", settings);
     }
 
