@@ -3,7 +3,7 @@ Black Jack by Mourad NAJAR
 
 **Rules**
 
-Simple Blackjack with no bets.
+Simple Blackjack with no bets. (2 Players vs Dealer)
 
 You can play with human or AI opponents against the Dealer/ bank.
 
@@ -23,6 +23,8 @@ mvn clean package
 
 java -jar target\blackjack-1.0-SNAPSHOT.jar
 ```
+
+Use setup option from menu to change game setup (Vs Human or AI)
 
 
 **Completion**
