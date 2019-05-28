@@ -96,10 +96,16 @@ public class BlackJack extends CardGame {
     @Override
     public void stats() {
         if(gameScore != null && gameScore.getScores()!=null){
-            String message ="Current Scores : ";
-            for(Map.Entry<String, Integer> entry : gameScore.getScores().entrySet()) {
-                message+= "\n"+entry.getKey()+" : "+ entry.getValue();
+            String message ="";
+            if(gameScore.getScores().isEmpty()){
+                message ="No Scores yet !";
+            } else {
+                message ="Current Scores : ";
+                for(Map.Entry<String, Integer> entry : gameScore.getScores().entrySet()) {
+                    message+= "\n"+entry.getKey()+" : "+ entry.getValue();
+                }
             }
+
             sendMessage(message);
         }
     }
