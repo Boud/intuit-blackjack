@@ -6,6 +6,11 @@ import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
 
+/**
+ * Hard BlackJack AI Strategy
+ *
+ * @author mnajar
+ */
 public class HardBlackjackAI implements AIStrategy {
 
     // TODO Hard AI cheats :p

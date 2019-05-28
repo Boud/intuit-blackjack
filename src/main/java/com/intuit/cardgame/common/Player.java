@@ -5,6 +5,11 @@ import com.intuit.cardgame.common.cards.Card;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract Card Game Player
+ *
+ * @author mnajar
+ */
 public abstract class Player {
 
     protected String name;

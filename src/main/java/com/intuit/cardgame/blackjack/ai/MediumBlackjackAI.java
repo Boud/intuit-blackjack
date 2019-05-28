@@ -6,6 +6,11 @@ import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
 
+/**
+ * Medium BlackJack AI Strategy
+ *
+ * @author mnajar
+ */
 public class MediumBlackjackAI implements AIStrategy {
 
     // Medium AI Stops at 17 if possible

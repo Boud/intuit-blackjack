@@ -6,6 +6,11 @@ import com.intuit.cardgame.common.CardGame;
 import com.intuit.cardgame.common.Player;
 import com.intuit.cardgame.common.ai.AIStrategy;
 
+/**
+ * Easy BlackJack AI Strategy
+ *
+ * @author mnajar
+ */
 public class EasyBlackjackAI implements AIStrategy {
 
     // This algorithm is stupid on purpose, it's easy AI after all !

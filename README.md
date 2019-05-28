@@ -36,3 +36,8 @@ potentially dozens of different games~~
 - ~~Capable of supporting interaction patterns other than a command-line interface~~
 - ~~When playing against the computer a difficulty setting of easy/medium/hard can
 be selected~~
+
+
+**TODO**
+- Use Command Pattern to handle "user commands" from UI Clients (Stand,Hit...) to avoid calling specific methods from BlackJack
+- Use AOP for Logging / Tracing

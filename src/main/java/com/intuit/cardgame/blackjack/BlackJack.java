@@ -31,7 +31,7 @@ import java.util.Map;
 /**<p>
  * BlackJack GUI Agnostic implementation.
  * <br>
- * Need add to GUI Clients using {@link BlackJack#addPropertyChangeListener(PropertyChangeListener)}
+ * Need to add GUI Clients as "Observers" using {@link BlackJack#addPropertyChangeListener(PropertyChangeListener)}
  * </p>
  *
  * @author mnajar
